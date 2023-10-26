@@ -1,54 +1,44 @@
 "use client"
 import React from 'react';
-import {Formik, Field, Form, FormikHelpers} from 'formik';
+import {Formik, Field, FormikHelpers, FormikProps} from 'formik';
 import * as Yup from "yup";
+import Form, {FormikValues} from "@/components/form";
+import Input from "@/components/input";
 
-interface Values {
-    firstName: string;
-    lastName: string;
+interface Values extends FormikValues {
     email: string;
+    password: string;
 }
 
 const initialValues = {
-    firstName: '',
-    lastName: '',
     email: '',
+    password: '',
 };
 const loginSchema = Yup.object().shape({
-    firstName: Yup.number().typeError("String Olacak!").required("Zorunlu!"),
-    lastName: Yup.string().required("Zorunlu Alan!"),
     email: Yup.string().email("Email formatında olmalı!").required("Email Zorunlu!"),
+    password: Yup.string().required("Zorunlu Alan!"),
 });
 const Login = () => {
-    const handleSubmit = (values: Values, formikHelpers: FormikHelpers<Values>) => {
-        console.log(values, formikHelpers);
+    const handleSubmit = (values: Values, formikHelpers: FormikHelpers<Values>): void | Promise<any> => {
     }
+
     return (
         <div>
             <h1>Signup</h1>
-            <Formik
+            <Form
                 initialValues={initialValues}
-                onSubmit={handleSubmit}
                 validationSchema={loginSchema}
+                onSubmit={handleSubmit}
             >
-                {({errors}) => {
-
-                    return (
-                        <Form className="flex gap-4 flex-col">
-                            <Field name="firstName" placeholder="firstName"/>
-                            {errors.firstName && <div>{errors.firstName}</div>}
-
-                            <Field name="lastName" placeholder="lastName"/>
-                            {errors.lastName && <div>{errors.lastName}</div>}
-
-                            <Field name="email" placeholder="email"/>
-                            {errors.email && <div>{errors.email}</div>}
-
-                            <button type="submit">Submit</button>
-                        </Form>
+                {
+                    (props: FormikProps<Values>) => (
+                        <>
+                            <Input name="email" placeholder="email" {...props} />
+                            <Input name="password" placeholder="password" {...props}/>
+                        </>
                     )
-                }}
-            </Formik>
+                }
+            </Form>
         </div>
     );
 };

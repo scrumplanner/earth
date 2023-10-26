@@ -1,16 +1,19 @@
 import type {Metadata} from 'next'
+import ThemeProvider from '@/components/providers/ThemeProvider'
+
 import './globals.css'
-import {Providers} from '@/components/providers'
 
 export const metadata: Metadata = {
     title: 'Template',
 }
 
-export default function RootLayout({children,}: { children: React.ReactNode }) {
+export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning={true}>
         <body>
-        <Providers>{children}</Providers>
+        <ThemeProvider>
+            {children}
+        </ThemeProvider>
         </body>
         </html>
     )

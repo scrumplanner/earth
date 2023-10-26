@@ -15,7 +15,7 @@ const setItem: ILocalStorageHelper['setItem'] = (key, value) => {
         }
         return false;
     } catch (e) {
-        console.error("LocalStorage Set Error:", e);
+        console.error("LocalStorage Set Errors:", e);
         return false;
     }
 };
@@ -28,7 +28,7 @@ const getItem: ILocalStorageHelper['getItem'] = (key) => {
         }
         return null;
     } catch (e) {
-        console.error("LocalStorage Get Error:", e);
+        console.error("LocalStorage Get Errors:", e);
         return null;
     }
 };
@@ -41,7 +41,7 @@ const removeItem: ILocalStorageHelper['removeItem'] = (key) => {
         }
         return false;
     } catch (e) {
-        console.error("LocalStorage Remove Error:", e);
+        console.error("LocalStorage Remove Errors:", e);
         return false;
     }
 };
@@ -54,7 +54,7 @@ const clearAll: ILocalStorageHelper['clearAll'] = () => {
         }
         return false;
     } catch (e) {
-        console.error("LocalStorage Clear Error:", e);
+        console.error("LocalStorage Clear Errors:", e);
         return false;
     }
 };
