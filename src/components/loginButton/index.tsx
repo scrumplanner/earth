@@ -5,7 +5,9 @@ import {signIn, signOut, useSession} from "next-auth/react";
 
 
 const LoginButton = () => {
-    const { data, status } = useSession();
+    const { data, status, } = useSession();
+
+    console.log(data);
 
     if(status === 'loading'){
         return <></>;
