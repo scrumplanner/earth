@@ -2,6 +2,9 @@ import type {Metadata} from 'next'
 import ThemeProvider from '@/components/providers/ThemeProvider'
 
 import './globals.css'
+import SessionProvider from "@/components/providers/SessionProvider";
+import DarkModeButton from "@/components/darkModeButton";
+import LoginButton from "@/components/loginButton";
 
 export const metadata: Metadata = {
     title: 'Template',
@@ -12,7 +15,11 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <html lang="en" suppressHydrationWarning={true}>
         <body>
         <ThemeProvider>
-            {children}
+            <SessionProvider>
+                <LoginButton />
+                <DarkModeButton />
+                {children}
+            </SessionProvider>
         </ThemeProvider>
         </body>
         </html>

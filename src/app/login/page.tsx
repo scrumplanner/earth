@@ -1,9 +1,10 @@
 "use client"
 import React from 'react';
-import {Formik, Field, FormikHelpers, FormikProps} from 'formik';
+import {FormikHelpers, FormikProps} from 'formik';
 import * as Yup from "yup";
 import Form, {FormikValues} from "@/components/form";
 import Input from "@/components/input";
+import {signIn} from "next-auth/react";
 
 interface Values extends FormikValues {
     email: string;
@@ -20,11 +21,14 @@ const loginSchema = Yup.object().shape({
 });
 const Login = () => {
     const handleSubmit = (values: Values, formikHelpers: FormikHelpers<Values>): void | Promise<any> => {
+        handleSignIn(values);
+    }
+    const handleSignIn = async(values: Values) => {
+        await signIn('credentials', {...values, callbackUrl: '/'})
     }
 
     return (
         <div>
-            <h1>Signup</h1>
             <Form
                 initialValues={initialValues}
                 validationSchema={loginSchema}
