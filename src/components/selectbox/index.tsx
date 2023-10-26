@@ -1,9 +1,9 @@
 import React from 'react';
-import {Field, FormikErrors, FormikProps} from "formik";
+import {Field, FormikProps} from "formik";
 import {FieldAttributes} from "formik/dist/Field";
 
 type Option = {
-    value: string,
+    value: string | number,
     text: string,
 }
 
