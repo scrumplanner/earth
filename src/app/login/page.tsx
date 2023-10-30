@@ -12,8 +12,8 @@ interface Values extends FormikValues {
 }
 
 const initialValues = {
-    email: '',
-    password: '',
+    email: 'serhatkochan@hotmail.com.tr',
+    password: '123456',
 };
 const loginSchema = Yup.object().shape({
     email: Yup.string().email("Email formatında olmalı!").required("Email Zorunlu!"),
